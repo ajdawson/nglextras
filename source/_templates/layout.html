@@ -1,0 +1,29 @@
+{% extends "!layout.html" %}
+
+
+<!-- Link bars at top and bottom of the page. -->
+{% block rootrellink %}
+    <li><a href="{{ pathto('index') }}">nglextras home</a>|&nbsp;</li>
+    <li><a href="{{ pathto('search') }}">Search</a>|&nbsp;</li>
+    <li><a href="{{ pathto('contents') }}">Documentation</a>&raquo;</li>
+{% endblock %}
+
+
+<!-- Banner image. -->
+{% block relbar1 %}
+    <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+        <a href="{{ pathto('index') }}">
+            <img src="{{ pathto('_static/nglextraslogo.png', 1) }}" border="0" alt="nglextras logo" />
+        </a>
+    </div>
+    {{ super() }}
+{% endblock  %}
+
+
+<!-- Put the sidebar before the body (?) -->
+{% block sidebar1 %}
+    {{ sidebar() }}
+{% endblock %}
+{% block sidebar2 %}
+{% endblock %}}
+
