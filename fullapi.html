@@ -1,0 +1,477 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Full nglextras API &mdash; nglextras 1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="nglextras 1 documentation" href="index.html" />
+    <link rel="prev" title="Plot modification system" href="plotmod.html" /> 
+  </head>
+  <body>
+    <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+        <a href="index.html">
+            <img src="_static/nglextraslogo.png" border="0" alt="nglextras logo" />
+        </a>
+    </div>
+    
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plotmod.html" title="Plot modification system"
+             accesskey="P">previous</a> |</li>
+    <li><a href="index.html">nglextras home</a>|&nbsp;</li>
+    <li><a href="search.html">Search</a>|&nbsp;</li>
+    <li><a href="contents.html">Documentation</a>&raquo;</li>
+ 
+      </ul>
+    </div>
+
+    
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Full nglextras API</a><ul>
+<li><a class="reference internal" href="#module-nglextras"><tt class="docutils literal"><span class="pre">nglextras</span></tt></a></li>
+<li><a class="reference internal" href="#module-nglextras.defaults"><tt class="docutils literal"><span class="pre">nglextras.defaults</span></tt></a></li>
+<li><a class="reference internal" href="#module-nglextras.modification"><tt class="docutils literal"><span class="pre">nglextras.modification</span></tt></a></li>
+<li><a class="reference internal" href="#module-nglextras.modifiers"><tt class="docutils literal"><span class="pre">nglextras.modifiers</span></tt></a></li>
+<li><a class="reference internal" href="#module-nglextras.plotting"><tt class="docutils literal"><span class="pre">nglextras.plotting</span></tt></a></li>
+<li><a class="reference internal" href="#module-nglextras.resources"><tt class="docutils literal"><span class="pre">nglextras.resources</span></tt></a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="plotmod.html"
+                        title="previous chapter">Plot modification system</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/fullapi.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="full-nglextras-api">
+<h1>Full nglextras API<a class="headerlink" href="#full-nglextras-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-nglextras">
+<span id="nglextras"></span><h2><a class="reference internal" href="#module-nglextras" title="nglextras"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras</span></tt></a><a class="headerlink" href="#module-nglextras" title="Permalink to this headline">¶</a></h2>
+<p>extra tools for working with PyNGL</p>
+<dl class="class">
+<dt id="nglextras.PanelPlot">
+<em class="property">class </em><tt class="descclassname">nglextras.</tt><tt class="descname">PanelPlot</tt><big>(</big><em>warnings=False</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#nglextras.PanelPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create panel plots from individual plots.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.xy">
+<tt class="descclassname">nglextras.</tt><tt class="descname">xy</tt><a class="headerlink" href="#nglextras.xy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws an XY plot, and returns a PlotId representing the XY
+plot created.</p>
+<p>xyplot = Ngl.xy(wks, x, y, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks.</p>
+<dl class="docutils">
+<dt>x, y &#8211; The X and Y coordinates of the curve(s). These values can be</dt>
+<dd>one-dimensional NumPy (masked) arrays, Python lists or
+two-dimensional NumPy (masked) arrays. If x and/or y are
+two-dimensional, then the leftmost dimension determines the
+number of curves.</dd>
+<dt>res &#8211; An (optional) instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.y">
+<tt class="descclassname">nglextras.</tt><tt class="descname">y</tt><a class="headerlink" href="#nglextras.y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws an XY plot using index values for the X axis, and
+returns a PlotId representing the XY plot created.</p>
+<p>yplot = Ngl.y(wks, y, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks.</p>
+<dl class="docutils">
+<dt>y &#8211; The Y coordinates of the curve(s). y can be a one-dimensional</dt>
+<dd>NumPy (masked) array, a Python list, or a two-dimensional NumPy
+(masked) array. If y is two-dimensional, then the leftmost dimension
+determines the number of curves and the rightmost dimension
+defines the number of points (npts).</dd>
+<dt>res &#8211; An (optional) instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">map</tt><a class="headerlink" href="#nglextras.map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws a map, and returns a PlotId of the map plot created.</p>
+<p>pid = Ngl.map(wks, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having Map</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.contour">
+<tt class="descclassname">nglextras.</tt><tt class="descname">contour</tt><a class="headerlink" href="#nglextras.contour" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws a contour plot, and returns a PlotId of the plot
+created.</p>
+<p>plot = Ngl.contour(wks, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>data &#8211; The data to contour. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.contour_map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">contour_map</tt><a class="headerlink" href="#nglextras.contour_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws contours over a map, and returns a PlotId of the plot
+created.</p>
+<p>plot = Ngl.contour_map(wks, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>data &#8211; The data to contour. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.streamline">
+<tt class="descclassname">nglextras.</tt><tt class="descname">streamline</tt><a class="headerlink" href="#nglextras.streamline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws streamlines, and returns a PlotId of the plot created.</p>
+<p>plot = Ngl.streamline(wks, u, v, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The streamline data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.streamline_map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">streamline_map</tt><a class="headerlink" href="#nglextras.streamline_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws streamlines over a map, and returns a PlotId of the
+plot created.</p>
+<p>plot = Ngl.streamline_map(wks, u, v, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The streamline data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.streamline_scalar">
+<tt class="descclassname">nglextras.</tt><tt class="descname">streamline_scalar</tt><a class="headerlink" href="#nglextras.streamline_scalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws streamlines colored according to a scalar field, and
+returns a PlotId of the plot created.</p>
+<p>plot = Ngl.streamline_scalar(wks, u, v, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The streamline data. Masked arrays allowed.</p>
+<p>data &#8211; The scalar data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.streamline_scalar_map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">streamline_scalar_map</tt><a class="headerlink" href="#nglextras.streamline_scalar_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws streamlines over a map colored according to a scalar
+field, and returns a PlotId of the plot created.</p>
+<p>plot = Ngl.streamline_scalar_map(wks, u, v, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The streamline data. Masked arrays allowed.</p>
+<p>data &#8211; The scalar data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.vector">
+<tt class="descclassname">nglextras.</tt><tt class="descname">vector</tt><a class="headerlink" href="#nglextras.vector" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws vectors, and returns a PlotId of the plot created.</p>
+<p>plot = Ngl.vector(wks, u, v, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The vector data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.vector_map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">vector_map</tt><a class="headerlink" href="#nglextras.vector_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws vectors over a map, and returns a PlotId of the plot
+created.</p>
+<p>plot = Ngl.vector_map(wks, u, v, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The vector data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.vector_scalar">
+<tt class="descclassname">nglextras.</tt><tt class="descname">vector_scalar</tt><a class="headerlink" href="#nglextras.vector_scalar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws vectors colored according to a scalar field, and
+returns a PlotId of the plot created.</p>
+<p>plot = Ngl.vector_scalar(wks, u, v, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The vector data. Masked arrays allowed.</p>
+<p>data &#8211; The scalar data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="nglextras.vector_scalar_map">
+<tt class="descclassname">nglextras.</tt><tt class="descname">vector_scalar_map</tt><a class="headerlink" href="#nglextras.vector_scalar_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and draws vectors over a map colored according to a scalar
+field, and returns a PlotId of the plot created.</p>
+<p>plot = Ngl.vector_scalar_map(wks, u, v, data, res=None)</p>
+<p>wks &#8211; The identifier returned from calling Ngl.open_wks</p>
+<p>u,v &#8211; The vector data. Masked arrays allowed.</p>
+<p>data &#8211; The scalar data. Masked arrays allowed.</p>
+<dl class="docutils">
+<dt>res &#8211; An optional instance of the Resources class having PyNGL</dt>
+<dd>resources as attributes.</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="nglextras.Resources">
+<em class="property">class </em><tt class="descclassname">nglextras.</tt><tt class="descname">Resources</tt><a class="headerlink" href="#nglextras.Resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for Ngl.Resources allowing for some resources to be pre-set.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="nglextras.MapResources">
+<em class="property">class </em><tt class="descclassname">nglextras.</tt><tt class="descname">MapResources</tt><big>(</big><em>dims=None</em><big>)</big><a class="headerlink" href="#nglextras.MapResources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resources tailored to map plots.</p>
+<dl class="attribute">
+<dt id="nglextras.MapResources.lbOrientation">
+<tt class="descname">lbOrientation</tt><a class="headerlink" href="#nglextras.MapResources.lbOrientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter method for lbOrientation attribute.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-nglextras.defaults">
+<span id="nglextras-defaults"></span><h2><a class="reference internal" href="#module-nglextras.defaults" title="nglextras.defaults"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras.defaults</span></tt></a><a class="headerlink" href="#module-nglextras.defaults" title="Permalink to this headline">¶</a></h2>
+<p>system for managing default parameters for Ngl plots</p>
+</div>
+<div class="section" id="module-nglextras.modification">
+<span id="nglextras-modification"></span><h2><a class="reference internal" href="#module-nglextras.modification" title="nglextras.modification"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras.modification</span></tt></a><a class="headerlink" href="#module-nglextras.modification" title="Permalink to this headline">¶</a></h2>
+<p>modifications system for Ngl plots</p>
+<dl class="class">
+<dt id="nglextras.modification.PlotModifier">
+<em class="property">class </em><tt class="descclassname">nglextras.modification.</tt><tt class="descname">PlotModifier</tt><a class="headerlink" href="#nglextras.modification.PlotModifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for plot modification objects.</p>
+<p>All modifiers should inherit from this object to ensure that the
+required methods exist.</p>
+<dl class="method">
+<dt id="nglextras.modification.PlotModifier.postplot">
+<tt class="descname">postplot</tt><big>(</big><em>wks</em>, <em>plot</em><big>)</big><a class="headerlink" href="#nglextras.modification.PlotModifier.postplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>method called after a plot is created.</p>
+<p>This method receives the workstation and the plot object.
+Modifications can then be applied to the plot. Returns None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nglextras.modification.PlotModifier.preplot">
+<tt class="descname">preplot</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#nglextras.modification.PlotModifier.preplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method called before a plot is created.</p>
+<p>This method recieves the full argument list to the plotting
+function which may be modified. Generally this method should
+parse the resource list for resource names it is associated
+with and take some action on these. Returns None.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-nglextras.modifiers">
+<span id="nglextras-modifiers"></span><h2><a class="reference internal" href="#module-nglextras.modifiers" title="nglextras.modifiers"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras.modifiers</span></tt></a><a class="headerlink" href="#module-nglextras.modifiers" title="Permalink to this headline">¶</a></h2>
+<p>modifications to apply to Ngl plotting methods</p>
+<dl class="class">
+<dt id="nglextras.modifiers.NglStrings">
+<em class="property">class </em><tt class="descclassname">nglextras.modifiers.</tt><tt class="descname">NglStrings</tt><a class="headerlink" href="#nglextras.modifiers.NglStrings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot modifier adding functionality equivalent to the &#8216;gsn&#8217; string
+NCL resources to Ngl plotting functions.</p>
+<p>This modifier makes the following resources available to Ngl
+plotting functions:</p>
+<blockquote>
+<div>&#8216;nglLeftString&#8217;
+&#8216;nglLeftStringFontColor&#8217;
+&#8216;nglLeftStringFontHeightF&#8217;
+&#8216;nglLeftStringParallelPosF&#8217;
+&#8216;nglLeftStringOrthogonalPosF&#8217;
+&#8216;nglRightString&#8217;
+&#8216;nglRightStringFontColor&#8217;
+&#8216;nglRightStringFontHeightF&#8217;
+&#8216;nglRightStringParallelPosF&#8217;
+&#8216;nglRightStringOrthogonalPosF&#8217;
+&#8216;nglCenterString&#8217;
+&#8216;nglCenterStringFontColor&#8217;
+&#8216;nglCenterStringFontHeightF&#8217;
+&#8216;nglCenterStringParallelPosF&#8217;
+&#8216;nglCenterStringOrthogonalPosF&#8217;</div></blockquote>
+<p>These nglXXX special resources have the same meaning as their gsnXXX
+equivalents.</p>
+<p><a class="reference external" href="http://www.ncl.ucar.edu/Document/Graphics/Resources/gsn.shtml">http://www.ncl.ucar.edu/Document/Graphics/Resources/gsn.shtml</a></p>
+<dl class="method">
+<dt id="nglextras.modifiers.NglStrings.postplot">
+<tt class="descname">postplot</tt><big>(</big><em>wks</em>, <em>plot</em><big>)</big><a class="headerlink" href="#nglextras.modifiers.NglStrings.postplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Annotate the plot with title strings.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="nglextras.modifiers.NglStrings.preplot">
+<tt class="descname">preplot</tt><big>(</big><em>*args</em><big>)</big><a class="headerlink" href="#nglextras.modifiers.NglStrings.preplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gather information about which strings should be added.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-nglextras.plotting">
+<span id="nglextras-plotting"></span><h2><a class="reference internal" href="#module-nglextras.plotting" title="nglextras.plotting"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras.plotting</span></tt></a><a class="headerlink" href="#module-nglextras.plotting" title="Permalink to this headline">¶</a></h2>
+<p>additional/modified plotting functions for Ngl</p>
+<dl class="class">
+<dt id="nglextras.plotting.PanelPlot">
+<em class="property">class </em><tt class="descclassname">nglextras.plotting.</tt><tt class="descname">PanelPlot</tt><big>(</big><em>warnings=False</em>, <em>debug=False</em><big>)</big><a class="headerlink" href="#nglextras.plotting.PanelPlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create panel plots from individual plots.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="nglextras.plotting.histogram">
+<tt class="descclassname">nglextras.plotting.</tt><tt class="descname">histogram</tt><big>(</big><em>wks</em>, <em>data</em>, <em>res</em><big>)</big><a class="headerlink" href="#nglextras.plotting.histogram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a histogram.</p>
+<p>The NumPy histogram function is used to define the histogram.</p>
+<p>Arguments:
+wks &#8211; Ngl wrokstation.
+data &#8211; 1D array of data to construct a histogram from.
+res &#8211; Ngl resources variable. Valid resources are:</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nglextras.resources">
+<span id="nglextras-resources"></span><h2><a class="reference internal" href="#module-nglextras.resources" title="nglextras.resources"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras.resources</span></tt></a><a class="headerlink" href="#module-nglextras.resources" title="Permalink to this headline">¶</a></h2>
+<p>Ngl resource creation and management</p>
+<dl class="class">
+<dt id="nglextras.resources.MapResources">
+<em class="property">class </em><tt class="descclassname">nglextras.resources.</tt><tt class="descname">MapResources</tt><big>(</big><em>dims=None</em><big>)</big><a class="headerlink" href="#nglextras.resources.MapResources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resources tailored to map plots.</p>
+<dl class="attribute">
+<dt id="nglextras.resources.MapResources.lbOrientation">
+<tt class="descname">lbOrientation</tt><a class="headerlink" href="#nglextras.resources.MapResources.lbOrientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Getter method for lbOrientation attribute.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="nglextras.resources.Resources">
+<em class="property">class </em><tt class="descclassname">nglextras.resources.</tt><tt class="descname">Resources</tt><a class="headerlink" href="#nglextras.resources.Resources" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper for Ngl.Resources allowing for some resources to be pre-set.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="plotmod.html" title="Plot modification system"
+             >previous</a> |</li>
+    <li><a href="index.html">nglextras home</a>|&nbsp;</li>
+    <li><a href="search.html">Search</a>|&nbsp;</li>
+    <li><a href="contents.html">Documentation</a>&raquo;</li>
+ 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2012, Andrew Dawson.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

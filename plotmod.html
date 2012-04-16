@@ -26,7 +26,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="nglextras 1 documentation" href="index.html" /> 
+    <link rel="top" title="nglextras 1 documentation" href="index.html" />
+    <link rel="next" title="Full nglextras API" href="fullapi.html" />
+    <link rel="prev" title="nglextras documentation contents" href="contents.html" /> 
   </head>
   <body>
     <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
@@ -41,6 +43,15 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fullapi.html" title="Full nglextras API"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="contents.html" title="nglextras documentation contents"
+             accesskey="P">previous</a> |</li>
     <li><a href="index.html">nglextras home</a>|&nbsp;</li>
     <li><a href="search.html">Search</a>|&nbsp;</li>
     <li><a href="contents.html">Documentation</a>&raquo;</li>
@@ -51,6 +62,22 @@
     
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Plot modification system</a><ul>
+<li><a class="reference internal" href="#plot-modifications">Plot modifications</a></li>
+<li><a class="reference internal" href="#applying-modifications">Applying modifications</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="contents.html"
+                        title="previous chapter">nglextras documentation contents</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="fullapi.html"
+                        title="next chapter">Full nglextras API</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/plotmod.txt"
@@ -80,7 +107,156 @@
             
   <div class="section" id="plot-modification-system">
 <h1>Plot modification system<a class="headerlink" href="#plot-modification-system" title="Permalink to this headline">¶</a></h1>
-<p>One of the most useful features of <tt class="xref py py-mod docutils literal"><span class="pre">nglextras</span></tt> is the plot modification system. This allows you to create extra resources that affect plotting behaviour, and have these recognised by <tt class="xref py py-mod docutils literal"><span class="pre">Ngl</span></tt> plotting functions without modifying their code.</p>
+<p>One of the most useful features of <a class="reference internal" href="fullapi.html#module-nglextras" title="nglextras"><tt class="xref py py-mod docutils literal"><span class="pre">nglextras</span></tt></a> is the plot modification system. This allows you to create extra resources that affect plotting behaviour, and have these recognised by <tt class="xref py py-mod docutils literal"><span class="pre">Ngl</span></tt> plotting functions without modifying their code.</p>
+<p>The idea behind this system is simple: to be able to create arbitrary modifications to plotting functions, which can be combined in a way the user chooses.</p>
+<div class="section" id="plot-modifications">
+<h2>Plot modifications<a class="headerlink" href="#plot-modifications" title="Permalink to this headline">¶</a></h2>
+<p>Plot modifications work by automatically wrapping plotting functions with code that performs the modifications. It is of course possible to write function wrappers that apply custom modifications to plots. However, using this system is more flexible as the same modifications can be re-used for multiple plotting functions and also combined with other modifications..</p>
+<p>A plot modification consists of an instance of a class derived from <a class="reference internal" href="fullapi.html#nglextras.modification.PlotModifier" title="nglextras.modification.PlotModifier"><tt class="xref py py-class docutils literal"><span class="pre">nglextras.modification.PlotModifier</span></tt></a>. The <tt class="xref py py-class docutils literal"><span class="pre">PlotMofifier</span></tt> class has the following form:</p>
+<blockquote>
+<div><dl class="class">
+<dt>
+<em class="property">class </em><tt class="descclassname">nglextras.modification.</tt><tt class="descname">PlotModifier</tt></dt>
+<dd><p>Base class for plot modification objects.</p>
+<p>All modifiers should inherit from this object to ensure that the
+required methods exist.</p>
+<dl class="attribute">
+<dt>
+<tt class="descclassname">PlotModifier.</tt><tt class="descname">resource_names</tt><em class="property"> = []</em></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descclassname">PlotModifier.</tt><tt class="descname">preplot</tt><big>(</big><em>*args</em><big>)</big></dt>
+<dd><p>Method called before a plot is created.</p>
+<p>This method recieves the full argument list to the plotting
+function which may be modified. Generally this method should
+parse the resource list for resource names it is associated
+with and take some action on these. Returns None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<tt class="descclassname">PlotModifier.</tt><tt class="descname">postplot</tt><big>(</big><em>wks</em>, <em>plot</em><big>)</big></dt>
+<dd><p>method called after a plot is created.</p>
+<p>This method receives the workstation and the plot object.
+Modifications can then be applied to the plot. Returns None.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p>The class variable <tt class="xref py py-attr docutils literal"><span class="pre">resource_names</span></tt> is a list which must include the names of all the special resources defined by the modifier. This allows these special resource names to be removed from the resource list before being passed to <tt class="xref py py-mod docutils literal"><span class="pre">Ngl</span></tt> plotting functions.</p>
+<p>The methods <a class="reference internal" href="fullapi.html#nglextras.modification.PlotModifier.preplot" title="nglextras.modification.PlotModifier.preplot"><tt class="xref py py-meth docutils literal"><span class="pre">preplot()</span></tt></a> and <a class="reference internal" href="fullapi.html#nglextras.modification.PlotModifier.postplot" title="nglextras.modification.PlotModifier.postplot"><tt class="xref py py-meth docutils literal"><span class="pre">postplot()</span></tt></a> should be overridden so as to produce the required modifications. Typically <a class="reference internal" href="fullapi.html#nglextras.modification.PlotModifier.preplot" title="nglextras.modification.PlotModifier.preplot"><tt class="xref py py-meth docutils literal"><span class="pre">preplot()</span></tt></a> will look for resource variables, and parse them to determine which features of the current modification are required. The actual modifications are then made to the plot in <a class="reference internal" href="fullapi.html#nglextras.modification.PlotModifier.postplot" title="nglextras.modification.PlotModifier.postplot"><tt class="xref py py-meth docutils literal"><span class="pre">postplot()</span></tt></a>.</p>
+</div>
+<div class="section" id="applying-modifications">
+<h2>Applying modifications<a class="headerlink" href="#applying-modifications" title="Permalink to this headline">¶</a></h2>
+<p>Modifications are applied to plotting functions via the <tt class="xref py py-class docutils literal"><span class="pre">nglextras.modification.ModificationManager</span></tt> decorator class. The class method <tt class="xref py py-meth docutils literal"><span class="pre">addModifiers()</span></tt> is called with an instance the <tt class="xref py py-class docutils literal"><span class="pre">PlotMofifier</span></tt> to be applied:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">ModificationManager</span><span class="o">.</span><span class="n">addModifier</span><span class="p">(</span><span class="n">MyPlotModifier</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>An instance of the <tt class="xref py py-class docutils literal"><span class="pre">ModificationManager</span></tt> class can then be created with an Ngl plotting function as the argument to its constructor. This will add all the modifications known to the <tt class="xref py py-class docutils literal"><span class="pre">ModificationManager</span></tt> to the plotting function:</p>
+<blockquote>
+<div><div class="highlight-python"><div class="highlight"><pre><span class="n">contour_map_mod</span> <span class="o">=</span> <span class="n">ModificationManager</span><span class="p">(</span><span class="n">Ngl</span><span class="o">.</span><span class="n">contour_map</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>The following example creates a plot modifier that adds an annotation to the lower right corner of the plot. This annotation could be the name of your institution or research group etc.:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;Example plot modification.</span>
+
+<span class="sd">Add a resource to control an institution name appearing in the lower</span>
+<span class="sd">right corner of a plot.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">Ngl</span>
+
+<span class="kn">from</span> <span class="nn">nglextras.modification</span> <span class="kn">import</span> <span class="n">PlotModifier</span><span class="p">,</span> <span class="n">ModificationManager</span>
+
+
+<span class="k">class</span> <span class="nc">InstitutionName</span><span class="p">(</span><span class="n">PlotModifier</span><span class="p">):</span>
+
+    <span class="c"># This class add the resource name &quot;nglxInstitutionNameOn&quot; which</span>
+    <span class="c"># turns on or off the plotting of the name of an institution name</span>
+    <span class="c"># in the lower right corner of the plot.</span>
+    <span class="n">resource_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;nglxInstitutionNameOn&quot;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">preplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine if the &#39;nglxInsitutionNameOn&#39; resource is set to True.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Retrieve all resource variables. Some plot types take two resources</span>
+        <span class="c"># variables as input.</span>
+        <span class="n">resource_vars</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">Resources</span><span class="p">):</span>
+                <span class="n">resource_vars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+        <span class="c"># Decide if the institution name should be drawn or not.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_draw_institution_name</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">for</span> <span class="n">res</span> <span class="ow">in</span> <span class="n">resource_vars</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="s">&quot;nglxInstitutionNameOn&quot;</span><span class="p">,</span> <span class="bp">False</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_draw_institution_name</span> <span class="o">=</span> <span class="bp">True</span>
+
+    <span class="k">def</span> <span class="nf">postplot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wks</span><span class="p">,</span> <span class="n">plot</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Draw the institution name.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_draw_institution_name</span><span class="p">:</span>
+            <span class="c"># Return early if no modification is required.</span>
+            <span class="k">return</span>
+        <span class="c"># Create resources for the text itself and the annotation.</span>
+        <span class="n">txres</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">Resources</span><span class="p">()</span>
+        <span class="n">txres</span><span class="o">.</span><span class="n">nglDraw</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="n">txres</span><span class="o">.</span><span class="n">txFontColor</span> <span class="o">=</span> <span class="s">&quot;red&quot;</span>
+        <span class="n">anres</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">Resources</span><span class="p">()</span>
+        <span class="n">anres</span><span class="o">.</span><span class="n">amSide</span> <span class="o">=</span> <span class="s">&quot;Right&quot;</span>
+        <span class="n">anres</span><span class="o">.</span><span class="n">amJust</span> <span class="o">=</span> <span class="s">&quot;BottomRight&quot;</span>
+        <span class="n">anres</span><span class="o">.</span><span class="n">amOrthogonalPosF</span> <span class="o">=</span> <span class="o">.</span><span class="mi">46</span>
+        <span class="n">anres</span><span class="o">.</span><span class="n">amParallelPosF</span> <span class="o">=</span> <span class="o">-.</span><span class="mi">46</span>
+        <span class="c"># Create the text and attach it to the plot as an annotation.</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">text_ndc</span><span class="p">(</span><span class="n">wks</span><span class="p">,</span> <span class="s">&quot;NglExtras&quot;</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="n">txres</span><span class="p">)</span>
+        <span class="n">anno</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">plot</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">anres</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&quot;__main__&quot;</span><span class="p">:</span>
+
+    <span class="c"># Add an instance of our modifier to the modification manager.</span>
+    <span class="n">ModificationManager</span><span class="o">.</span><span class="n">addModifiers</span><span class="p">(</span><span class="n">InstitutionName</span><span class="p">())</span>
+
+    <span class="c"># Wrap the Ngl function xy to create a modified version that</span>
+    <span class="c"># accepts our nglxInstitutionNameOn resource.</span>
+    <span class="n">xymod</span> <span class="o">=</span> <span class="n">ModificationManager</span><span class="p">(</span><span class="n">Ngl</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span>
+
+    <span class="c"># Create a workstation.</span>
+    <span class="n">wkres</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">Resources</span><span class="p">()</span>
+    <span class="n">wks</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">open_wks</span><span class="p">(</span><span class="s">&quot;png&quot;</span><span class="p">,</span> <span class="s">&quot;plotmod_example&quot;</span><span class="p">,</span> <span class="n">wkres</span><span class="p">)</span>
+
+    <span class="c"># Create a set of resources that turn on the institution name.</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">Ngl</span><span class="o">.</span><span class="n">Resources</span><span class="p">()</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">tiMainString</span> <span class="o">=</span> <span class="s">&quot;res.nglxInstitutionNameOn=False (default)&quot;</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">100.</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c"># Plot y=sin(x) with the instutution name turned off.</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">xymod</span><span class="p">(</span><span class="n">wks</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+
+    <span class="c"># Plot y=sin(x) with the institution name turned on.</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">nglxInstitutionNameOn</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">tiMainString</span> <span class="o">=</span> <span class="s">&quot;res.nglxInstitutionNameOn=True&quot;</span>
+    <span class="n">plot</span> <span class="o">=</span> <span class="n">xymod</span><span class="p">(</span><span class="n">wks</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span>
+
+    <span class="n">Ngl</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>which produces the following plots:</p>
+<img alt="_images/plotmod_example_instoff.png" src="_images/plotmod_example_instoff.png" style="width: 400px;" />
+<img alt="_images/plotmod_example_inston.png" src="_images/plotmod_example_inston.png" style="width: 400px;" />
+</div>
 </div>
 
 
@@ -96,6 +272,15 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="fullapi.html" title="Full nglextras API"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="contents.html" title="nglextras documentation contents"
+             >previous</a> |</li>
     <li><a href="index.html">nglextras home</a>|&nbsp;</li>
     <li><a href="search.html">Search</a>|&nbsp;</li>
     <li><a href="contents.html">Documentation</a>&raquo;</li>
