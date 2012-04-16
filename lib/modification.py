@@ -134,7 +134,6 @@ class ModificationManager(object):
                     delattr(r, resource_name)
                 except AttributeError:
                     pass
-            print dir(r)
         # Make the plot.
         plot = self.f(*new_args)
         # Call the modifier post-plot methods.
