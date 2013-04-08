@@ -27,7 +27,7 @@ Installation
 
     sudo python setup.py install
 
-to install system-wide, or to install in a specific place
+to install system-wide, or to install in your home directory
 
-    python setup.py install --intall-lib=/PATH/TO/INSTALL/DIR
+    python setup.py install --user
 
